@@ -3,6 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import MenuAdmin from './MenuAdmin';
 import sampleBurgers from '../sample-burgers';
+import Burger from './Burger';
 
 class App extends React.Component {
   state = {
@@ -18,14 +19,18 @@ class App extends React.Component {
 
   loadSampleBurgers = () => {
     this.setState({ burgers: sampleBurgers });
-    console.log('Load');
   };
 
   render() {
     return (
       <div className="burger-paradise">
         <div className="menu">
-          <Header title="Very Hot Burger" amount={10} hot={true} />
+          <Header title="Hot Burger" />
+          <ul className="burgers">
+            {Object.keys(this.state.burgers).map((key) => {
+              return <Burger key={key} index={key} details={this.state.burgers[key]} />;
+            })}
+          </ul>
         </div>
         <Order />
         <MenuAdmin addBurger={this.addBurger} loadSampleBurgers={this.loadSampleBurgers} />
