@@ -6,10 +6,13 @@ class Order extends React.Component {
     const burger = this.props.burgers[key];
     const count = this.props.order[key];
     const isAvailable = burger && burger.status === 'available';
+
+    if (!burger) return null;
+
     if (!isAvailable) {
       return (
         <li className="unavailable" key={key}>
-          Извините, {burger ? burger.name : 'бурге'} временно не доступен
+          Извините, {burger ? burger.name : 'бургер'} временно не доступен
         </li>
       );
     }
@@ -20,7 +23,9 @@ class Order extends React.Component {
           <span>{count}</span>
           шт. {burger.name}
           <span> {count * burger.price} ₽</span>
-          <button className="cancellitem">&times; </button>
+          <button onClick={() => this.props.deleteFromOrder(key)} className="cancellitem">
+            &times;{' '}
+          </button>
         </span>
       </li>
     );
@@ -40,8 +45,10 @@ class Order extends React.Component {
 
     return (
       <div className="order-wrap">
-        <h2>Ваш заказ</h2>
+        <h2>Ваш Заказ</h2>
+
         <ul className="order">{orderIds.map(this.renderOrder)}</ul>
+
         {total > 0 ? (
           <Shipment total={total} />
         ) : (

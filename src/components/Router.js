@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
 import App from './App';
 import NotFound from './NotFound';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const Router = () => {
   return (
