@@ -11,7 +11,7 @@ class AddBurgerForm extends React.Component {
     event.preventDefault();
     const burger = {
       name: this.nameRef.current.value,
-      priceRef: this.priceRef.current.value,
+      priceRef: parseFloat(this.priceRef.current.value || 0),
       statusRef: this.statusRef.current.value,
       descRef: this.descRef.current.value,
       imageRef: this.imageRef.current.value,
