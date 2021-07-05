@@ -4,6 +4,7 @@ import Order from './Order';
 import MenuAdmin from './MenuAdmin';
 import sampleBurgers from '../sample-burgers';
 import Burger from './Burger';
+import base from '../base';
 
 class App extends React.Component {
   state = {
@@ -11,6 +12,16 @@ class App extends React.Component {
     order: {},
   };
 
+  componentDidMount() {
+    const { params } = this.props.match;
+    this.ref = base.syncState(`${params.restaurantId}/burgers`, {
+      context: this,
+      state: 'burgers',
+    });
+  }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   addBurger = (burger) => {
     const burgers = { ...this.state.burger };
     burgers[`burgers${Date.now()}`] = burger;
