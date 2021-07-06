@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Header = (props) => (
   <header className="top">
     <div className="wrap">
@@ -20,5 +20,9 @@ const Header = (props) => (
     </div>
   </header>
 );
+
+Header.propTypes = {
+  title: PropTypes.string,
+};
 
 export default Header;

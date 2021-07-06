@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EditBurgerForm extends React.Component {
-  // handleChange = (event) => {
-  //   const updatedBurger = {
-  //     ...this.props.burger,
-  //     [event.currentTarget.value]: event.currentTarget.value,
-  //   };
-  //   this.props.updateBurger(this.props.index, updatedBurger);
-  // };
-
+  static propTypes = {
+    burger: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      desc: PropTypes.string,
+      status: PropTypes.string,
+    }),
+    index: PropTypes.string,
+    updateBurger: PropTypes.func,
+    deleteBurger: PropTypes.func,
+  };
   handleChange = (event) => {
     const updatedBurger = {
       ...this.props.burger,
